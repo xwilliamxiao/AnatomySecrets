@@ -7,28 +7,85 @@
 <body>
     <h1>Anatomy Secrets</h1>
     <h2>Generate Workout Plans</h2>
+    <h1>TESTING</h1>
+    {% for workouts in workoutPlan %}
+        <li>
+            {{ workouts.name }}
+            --- {{ workouts.split }}
+        </li>
+    {% endfor %}
+    <h2> Business Now</h2>
+
+
+    <!--HERE -->
+{#    <form method="post" action="{% url 'choose a plan' %}">#}
+    <form method="post">
+        {% csrf_token %}
+        <!-- Radio Buttons for Days -->
+        <h3>Select days for workouts:</h3>
+
+        <input type="radio" id="3" name="workoutDays" value="3">
+        <label for="3">3 days/week</label><br>
+        <input type="radio" id="6" name="workoutDays" value="6">
+        <label for="6">6 days/week</label><br>
+
+        <!-- Radio Buttons for Variation -->
+        <h3>Select level for workouts</h3>
+
+        <input type="radio" id="One" name="workoutVar" value="One">
+        <label for="One">Level 1</label><br>
+        <input type="radio" id="Two" name="workoutVar" value="Two">
+        <label for="Two">Level 2</label><br>
+
+        <input type="submit" name="search" value="Submit">
+
+        {% for showdata in search_both %}
+            {{ showdata.name }}
+        {% endfor %}
+    </form>
+    <hr>
+
+    <!-- NEW STUFF FROM LECTURE 9 -->
+    <form method="post" action="{% url 'create a new task' %}">
+        {% csrf_token %}
+        {{ form.day_radio_field.label_tag }}
+        {% for radio in form.day_radio_field %}
+        {{ radio }}
+        {{ radio.choice_label }}
+        {% endfor %}
+        {% comment %}{{ form.as_p }{% endcomment %}
+        <button type="submit">Create Task</button>
+    </form>
+    <hr>
+    <!-- ALL THE OLD STUFF IS BELOW HERE -->
     <h3>Select how often you want to workout</h3>
 
-    <input type="radio" id="threeDays" name="workoutDays" value="threeDays">
-    <label for="threeDays">3 days/week</label><br>
+    <form method="post" action="/">
+        {% csrf_token %}
+        <input type="radio2" id="threeDays" name="workoutDays" value="threeDays">
+        <label for="threeDays">3 days/week</label><br>
 
-    <input type="radio" id="fiveDays" name="workoutDays" value="fiveDays">
-    <label for="fiveDays">5 days/week</label><br>
+        <input type="radio2" id="fiveDays" name="workoutDays" value="fiveDays">
+        <label for="fiveDays">5 days/week</label><br>
 
-    <!-- Maybe have it to be beginner, intermediate, advanced-->
-    <h3>Select difficulty</h3>
-    <input type="radio" id="easy" name="workoutDays" value="easy">
-    <label for="medium">Easy</label><br>
+        <!-- Maybe have it to be beginner, intermediate, advanced-->
+        <h3>Select difficulty</h3>
+        <input type="radio2" id="easy" name="workoutDays" value="easy">
+        <label for="medium">Easy</label><br>
 
-    <input type="radio" id="medium" name="workoutDays" value="medium">
-    <label for="medium">Medium</label><br>
+        <input type="radio2" id="medium" name="workoutDays" value="medium">
+        <label for="medium">Medium</label><br>
 
-    <input type="radio" id="hard" name="workoutDays" value="hard">
-    <label for="hard">Hard</label><br>
+        <input type="radio2" id="hard" name="workoutDays" value="hard">
+        <label for="hard">Hard</label><br>
 
+    <input type="submit" name="search" value="submit">
 
-    <input type="submit" value="submit">
+    </form>
 
+    <{% comment %}p>{{ makingWork }}</p>{% endcomment %}
+
+    <hr>
     <!-- THIS IS WHERE THE USER WORKOUTS WILL BE -->
     <h2>User Workouts</h2>
     <p>haha first exercise</p>
@@ -118,6 +175,8 @@
             <h1>HUH</h1>
         {%  endif %}
     {% endfor %}
+    <hr>
+
 
 </ul>
 </body>
