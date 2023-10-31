@@ -8,7 +8,7 @@ import requests
 # Create your views here.
 def index(request):
     # Global variables
-    selected = False
+    selected = True
     print(selected)
     workoutPlan = WorkoutPlan.objects.all()
     exercises = Exercises.objects.all()
@@ -21,8 +21,30 @@ def index(request):
     for exercise in exercise_test:
         print(exercise.name)
 
+    #--- FULL BODY PLAN AND EXERCISES---
+    full_body = WorkoutPlan.objects.filter(days=3)
+    full_body_test = []
+    for workout_plan in full_body:
+        exercises_for_plan = workout_plan.exercises.all()
+        full_body_test.extend(exercises_for_plan)
+
+    # --- Find the full body variations ---
+    full_body_var = WorkoutPlan.objects.filter(variation=1)
+    full_body_var_info = []
+    for workout_plan in full_body_var:
+        exercises_for_variation = workout_plan.exercises.all()
+        full_body_var_info.extend(exercises_for_variation)
+
+
+    #--- Multi parameter ---
+    multi_day_var = WorkoutPlan.objects.filter(variation=1).filter(days=3)
+    multi_day_var_info = []
+    for exercises_both in multi_day_var:
+        exercises_for_both = exercises_both.exercises.all()
+        multi_day_var_info.extend(exercises_for_both)
+
     return render(request, 'index.html',
-                  {'workoutPlan': workoutPlan, 'exercises': exercises, 'exercise_test': exercise_test, 'selected': selected})
+                  {'workoutPlan': workoutPlan, 'exercises': exercises, 'exercise_test': exercise_test, 'selected': selected, 'full_body': full_body, 'full_body_test':full_body_test, 'full_body_var_info': full_body_var_info,'multi_day_var_info': multi_day_var_info })
 
 
 # This function is not used anywhere

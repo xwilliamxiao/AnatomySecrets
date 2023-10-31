@@ -50,8 +50,8 @@
     {% for workouts in workoutPlan %}
         <li>
             {{ workouts.name }}
-            {{ workouts.type }}
-            {{ workouts.difficulty }}
+            --- {{ workouts.split }}
+            {% comment %}{{ workouts.difficulty }}{% endcomment %}
             {% comment %}{{ workouts.description }}
             {% if workouts.completed %}
                 (Done)
@@ -73,6 +73,52 @@
     {% else %}
         <p>Selected is unknown</p>
     {% endif %}
+
+    <h1>Show all the full body days</h1>
+    {% for days in full_body %}
+            <li>
+                <p>{{ days.name }} : {{ days.days }} days</p>
+                {% for exercises in full_body_test %}
+                    <li>
+                    {{ exercises.name }}
+                    </li>
+                {%  endfor %}
+            </li>
+        {%  endfor %}
+
+    <!-- This currently prints out all the stuff in var 1 -->
+    <!-- We need to print out everything that is in all the var '1' but also in 'full body' -->
+    <h2>HEhe</h2>
+    {% for exercises in full_body_var_info %}
+                    <!-- If exercises.days ==3 and exercises.var == 1-->
+                   {% if full_body == 3 and full_body_var_info == 1 %}
+                    <li>
+                    {{ exercises.name }}
+                    </li>
+                    {% endif %}
+                {%  endfor %}
+
+    <h2>Serius Business Now</h2>
+    {% for workouts in workoutPlan %}
+        <!-- Just prints the days -->
+        {{workouts.days}}
+        {{workouts.variation}}
+        <!-- Dont need the stuff above -->
+        {% if workouts.days == '3' and workouts.variation == '1' %}
+            <p>{{ workouts.name }}
+            <!-- Now need to print all the exercises within them -->
+
+            {{ multi_day_var_info }}
+            </p>
+            {% for exercises in multi_day_var_info %}
+                <li>
+                    {{ exercises.name }}
+                </li>
+            {% endfor %}
+            <h1>HUH</h1>
+        {%  endif %}
+    {% endfor %}
+
 </ul>
 </body>
 </html>
