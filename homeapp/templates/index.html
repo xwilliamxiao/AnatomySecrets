@@ -6,178 +6,44 @@
 </head>
 <body>
     <h1>Anatomy Secrets</h1>
+    <hr>
     <h2>Generate Workout Plans</h2>
-    <h1>TESTING</h1>
-    {% for workouts in workoutPlan %}
-        <li>
-            {{ workouts.name }}
-            --- {{ workouts.split }}
-        </li>
-    {% endfor %}
-    <h2> Business Now</h2>
-
-
-    <!--HERE -->
-{#    <form method="post" action="{% url 'choose a plan' %}">#}
     <form method="post">
         {% csrf_token %}
-        <!-- Radio Buttons for Days -->
-        <h3>Select days for workouts:</h3>
 
-        <input type="radio" id="3" name="workoutDays" value="3">
+        <h3>Select days for workouts:</h3>
+        <!-- Radio Buttons for Days -->
+        <input type="radio" id="3" name="workoutDays" value="3" required checked>
         <label for="3">3 days/week</label><br>
-        <input type="radio" id="6" name="workoutDays" value="6">
+        <input type="radio" id="6" name="workoutDays" value="6" required>
         <label for="6">6 days/week</label><br>
 
-        <!-- Radio Buttons for Variation -->
         <h3>Select level for workouts</h3>
-
-        <input type="radio" id="One" name="workoutVar" value="One">
-        <label for="One">Level 1</label><br>
-        <input type="radio" id="Two" name="workoutVar" value="Two">
-        <label for="Two">Level 2</label><br>
+        <!-- Radio Buttons for Difficulty -->
+        <input type="radio" id="Easy" name="workoutDifficulty" value="Easy" required checked>
+        <label for="Easy">Easy</label><br>
+        <input type="radio" id="Medium" name="workoutDifficulty" value="Medium" required>
+        <label for="Medium">Medium</label><br>
+        <input type="radio" id="Hard" name="workoutDifficulty" value="Hard" required>
+        <label for="Hard">Hard</label><br>
 
         <input type="submit" name="search" value="Submit">
-
-        {% for showdata in search_both %}
-            {{ showdata.name }}
-        {% endfor %}
     </form>
-    <hr>
-
-    <!-- NEW STUFF FROM LECTURE 9 -->
-    <form method="post" action="{% url 'create a new task' %}">
-        {% csrf_token %}
-        {{ form.day_radio_field.label_tag }}
-        {% for radio in form.day_radio_field %}
-        {{ radio }}
-        {{ radio.choice_label }}
-        {% endfor %}
-        {% comment %}{{ form.as_p }{% endcomment %}
-        <button type="submit">Create Task</button>
-    </form>
-    <hr>
-    <!-- ALL THE OLD STUFF IS BELOW HERE -->
-    <h3>Select how often you want to workout</h3>
-
-    <form method="post" action="/">
-        {% csrf_token %}
-        <input type="radio2" id="threeDays" name="workoutDays" value="threeDays">
-        <label for="threeDays">3 days/week</label><br>
-
-        <input type="radio2" id="fiveDays" name="workoutDays" value="fiveDays">
-        <label for="fiveDays">5 days/week</label><br>
-
-        <!-- Maybe have it to be beginner, intermediate, advanced-->
-        <h3>Select difficulty</h3>
-        <input type="radio2" id="easy" name="workoutDays" value="easy">
-        <label for="medium">Easy</label><br>
-
-        <input type="radio2" id="medium" name="workoutDays" value="medium">
-        <label for="medium">Medium</label><br>
-
-        <input type="radio2" id="hard" name="workoutDays" value="hard">
-        <label for="hard">Hard</label><br>
-
-    <input type="submit" name="search" value="submit">
-
-    </form>
-
-    <{% comment %}p>{{ makingWork }}</p>{% endcomment %}
-
-    <hr>
-    <!-- THIS IS WHERE THE USER WORKOUTS WILL BE -->
-    <h2>User Workouts</h2>
-    <p>haha first exercise</p>
-    {% for exercise in exercises %}
-        <li>
-            {{ exercise.name }}
-            {{ exercise.description }}
-            {% comment %}{{ workouts.description }}
-            {% if workouts.completed %}
-                (Done)
-            {% endif %}{% endcomment %}
-        </li>
-    {% endfor %}
-    <!-- END OF USER WORKOUTS -->
-
-    <h1>TESTING</h1>
-
-
-    {% for workouts in workoutPlan %}
-        <li>
-            {{ workouts.name }}
-            --- {{ workouts.split }}
-            {% comment %}{{ workouts.difficulty }}{% endcomment %}
-            {% comment %}{{ workouts.description }}
-            {% if workouts.completed %}
-                (Done)
-            {% endif %}{% endcomment %}
-        </li>
-    {% endfor %}
-
-    <h1>FOR EXERCISES IN ARMS</h1>
-    <h2>{{ workoutPlan.name }}</h2>
-    {% if selected %}
-        <p>Selected is true</p>
-        {% for armExercises in exercise_test %}
-            <li>
-                {{ armExercises.name }}
-            </li>
-        {%  endfor %}
-    {% elif selected == False %}
-        <p>Selected is false</p>
-    {% else %}
-        <p>Selected is unknown</p>
-    {% endif %}
-
-    <h1>Show all the full body days</h1>
-    {% for days in full_body %}
-            <li>
-                <p>{{ days.name }} : {{ days.days }} days</p>
-                {% for exercises in full_body_test %}
+    <form>
+        {% for showdata in search_both_two %}
+            <hr>
+            <h2>{{ showdata.name }}</h2>
+            {% comment %}<p>{{ showdata.days }}</p>{% endcomment %} <!-- Just shows the days for workouts -->
+            <h3>Exercises:</h3>
+            <ul>
+                {% for exercise in showdata.exercises.all %}
                     <li>
-                    {{ exercises.name }}
+                        <p><b>{{ exercise.name }}</b></p>
+                        <p>{{ exercise.description }}</p>
                     </li>
-                {%  endfor %}
-            </li>
-        {%  endfor %}
-
-    <!-- This currently prints out all the stuff in var 1 -->
-    <!-- We need to print out everything that is in all the var '1' but also in 'full body' -->
-    <h2>HEhe</h2>
-    {% for exercises in full_body_var_info %}
-                    <!-- If exercises.days ==3 and exercises.var == 1-->
-                   {% if full_body == 3 and full_body_var_info == 1 %}
-                    <li>
-                    {{ exercises.name }}
-                    </li>
-                    {% endif %}
-                {%  endfor %}
-
-    <h2>Serius Business Now</h2>
-    {% for workouts in workoutPlan %}
-        <!-- Just prints the days -->
-        {{workouts.days}}
-        {{workouts.variation}}
-        <!-- Dont need the stuff above -->
-        {% if workouts.days == '3' and workouts.variation == '1' %}
-            <p>{{ workouts.name }}
-            <!-- Now need to print all the exercises within them -->
-
-            {{ multi_day_var_info }}
-            </p>
-            {% for exercises in multi_day_var_info %}
-                <li>
-                    {{ exercises.name }}
-                </li>
-            {% endfor %}
-            <h1>HUH</h1>
-        {%  endif %}
+                {% endfor %}
+            </ul>
     {% endfor %}
-    <hr>
-
-
-</ul>
+    </form>
 </body>
 </html>

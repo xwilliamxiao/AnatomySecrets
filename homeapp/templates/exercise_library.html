@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise Library</title>
+</head>
+<body>
+    <hr>
+    <!-- THIS IS WHERE THE USER WORKOUTS WILL BE -->
+    <h2>User Workouts</h2>
+    <p>haha first exercise</p>
+    {% for exercise in exercises %}
+        <li>
+            {{ exercise.name }}
+            {{ exercise.description }}
+            {% comment %}{{ workouts.description }}
+            {% if workouts.completed %}
+                (Done)
+            {% endif %}{% endcomment %}
+        </li>
+    {% endfor %}
+    <!-- END OF USER WORKOUTS -->
+</body>
+</html>
