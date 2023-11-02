@@ -8,6 +8,7 @@ Instructions:
 
 1. Download the repository.
 2. Open up the code within preferred IDE.
+3. Install Django and create virtual environment (if needed)
 3. Click run to initialize.
 4. Click on hyperlink to localhost to view website.
 
