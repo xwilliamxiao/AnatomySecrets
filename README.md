@@ -11,7 +11,8 @@ Instructions:
 3. Click run to initialize.
 4. Click on hyperlink to localhost to view website.
 
-There is a navigation for the 'Workouts Plans' section and 'Exercises' section.
+There is navigation for the following sections 'Workouts Plans','Exercises', and 'Create' section.
 
-- Within the Workout Plans section, users can select their preferred workout days and difficulty in order to generate a workout.
-- Within the Exercises section, users can view all the available exercises.
+- For the Workout Plans section, users can select their preferred workout days and difficulty in order to generate a workout.
+- For the Exercises section, users can view all the available exercises.
+- For the Create section, users can create their own workout for the entire Anatomy Secrets Community to view.
