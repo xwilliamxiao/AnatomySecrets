@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Anatomy Secrets</h1>
+    <nav>
+        <a href="{% url 'index' %}">Workouts</a>
+        <a href="{% url 'exercise_library' %}">Exercises</a>
+    </nav>
     <hr>
     <h2>Generate Workout Plans</h2>
     <form method="post">
@@ -30,10 +34,9 @@
         <input type="submit" name="search" value="Submit">
     </form>
     <form>
-        {% for showdata in search_both_two %}
+        {% for showdata in refine_plan %}
             <hr>
             <h2>{{ showdata.name }}</h2>
-            {% comment %}<p>{{ showdata.days }}</p>{% endcomment %} <!-- Just shows the days for workouts -->
             <h3>Exercises:</h3>
             <ul>
                 {% for exercise in showdata.exercises.all %}
@@ -45,5 +48,6 @@
             </ul>
     {% endfor %}
     </form>
+
 </body>
 </html>

@@ -5,20 +5,22 @@
     <title>Exercise Library</title>
 </head>
 <body>
+    <h1>Anatomy Secrets</h1>
+    <nav>
+        <a href="{% url 'index' %}">Workouts</a>
+        <a href="{% url 'exercise_library' %}">Exercises</a>
+    </nav>
     <hr>
-    <!-- THIS IS WHERE THE USER WORKOUTS WILL BE -->
-    <h2>User Workouts</h2>
-    <p>haha first exercise</p>
-    {% for exercise in exercises %}
-        <li>
-            {{ exercise.name }}
-            {{ exercise.description }}
-            {% comment %}{{ workouts.description }}
-            {% if workouts.completed %}
-                (Done)
-            {% endif %}{% endcomment %}
-        </li>
+    <h2>Explore Exercises</h2>
+    <!-- Organize by muscle groups -->
+    {% for muscle_group, exercises in organized_data.items %}
+        <h2>{{ muscle_group }}</h2>
+        <ul>
+            {% for exercise in exercises %}
+                <li>{{ exercise.name }}</li>
+                <!-- Add more fields as needed -->
+            {% endfor %}
+        </ul>
     {% endfor %}
-    <!-- END OF USER WORKOUTS -->
 </body>
 </html>
