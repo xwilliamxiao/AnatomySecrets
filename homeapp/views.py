@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import WorkoutPlan, Exercises
+from .models import WorkoutPlan, Exercises, UserCreatedEx
 from django.views.decorators.http import require_POST
 import requests
 
@@ -27,10 +27,6 @@ def index(request):
 
 
 def exercise_library(request):
-    # Load in all the exercises
-    # exercises = Exercises.objects.all()
-
-    # Testing to see if I can print the muscle_group and then the
     exercises_group = Exercises.objects.all().order_by('muscle_group')
     organized_data = {}
     for exercise in exercises_group:
@@ -40,3 +36,13 @@ def exercise_library(request):
         organized_data[muscle_group].append(exercise)
 
     return render(request, 'exercise_library.html', {'organized_data': organized_data, })  # 'exercises':exercises
+
+def create_workout(request):
+    if request.method == "POST":
+        new_name = request.POST.get('exercise_name')
+        new_muscle_group = request.POST.get('muscle_group')
+        new_description = request.POST.get('exercise_description')
+        new_exercise = UserCreatedEx.objects.create(exercise_name=new_name, muscle_group=new_muscle_group, exercise_description=new_description)
+        return redirect('create')
+    user_exercise = UserCreatedEx.objects.all()
+    return render(request, 'create.html', {'user_exercise':user_exercise})

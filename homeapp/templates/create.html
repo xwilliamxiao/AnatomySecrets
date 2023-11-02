@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Anatomy Secrets</h1>
+    <nav>
+        <a href="{% url 'index' %}">Workouts</a>
+        <a href="{% url 'exercise_library' %}">Exercises</a>
+        <a href="{% url 'create' %}">Create</a>
+    </nav>
+    <hr>
+    <h2>Create Custom Exercises</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="exercise_name">Exercise Name</label><br>
+        <input type="text" id="exercise_name" name="exercise_name" required><br><br>
+
+        <label for="exercise_description">Description</label><br>
+        <textarea id="exercise_description" name="exercise_description" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="muscle_group">Muscle Group</label><br>
+        <input type="text" id="muscle_group" name="muscle_group" required><br><br>
+
+        <input type="submit" value="submit"><br><br>
+    </form>
+    <hr>
+    <h2>Community Created Exercises</h2>
+    <form>
+        <hr>
+        {% for exercises in user_exercise %}
+            <h2>{{ exercises.exercise_name }}</h2>
+            <h3>Muscle Group: {{ exercises.muscle_group }}</h3>
+            <p>{{ exercises.exercise_description }}</p>
+            <hr>
+        {% endfor %}
+    </form>
+</body>
+</html>

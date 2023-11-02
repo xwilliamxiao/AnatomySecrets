@@ -9,6 +9,7 @@
     <nav>
         <a href="{% url 'index' %}">Workouts</a>
         <a href="{% url 'exercise_library' %}">Exercises</a>
+        <a href="{% url 'create' %}">Create</a>
     </nav>
     <hr>
     <h2>Generate Workout Plans</h2>
@@ -33,6 +34,12 @@
 
         <input type="submit" name="search" value="Submit">
     </form>
+    <hr>
+    <h3>Workout Tips</h3>
+    <p>*Workouts should be done to achieve the following goals:</p>
+    <p><b>Hypertrophy</b>= 3 sets of 8 to 12 reps</p>
+    <p><b>Strength</b>= 5 sets of 5 reps</p>
+    <p><b>Endurance</b> = 3 sets of 15 to 20 reps</p>
     <form>
         {% for showdata in refine_plan %}
             <hr>
