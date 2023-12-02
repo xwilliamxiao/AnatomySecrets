@@ -22,9 +22,21 @@
         <textarea id="exercise_description" name="exercise_description" rows="4" cols="50" required></textarea><br><br>
 
         <label for="muscle_group">Muscle Group</label><br>
-        <input type="text" id="muscle_group" name="muscle_group" required><br><br>
+        <select name="muscle_group">
+            <option value="Biceps">Biceps</option>
+            <option value="Triceps">Triceps</option>
+            <option value="Shoulders">Shoulders</option>
+            <option value="Chest">Chest</option>
+            <option value="Back">Back</option>
+            <option value="Quadriceps">Quadriceps</option>
+            <option value="Hamstring">Hamstring</option>
+            <option value="Calf">Calf</option>
+            <option value="Abs">Abs</option>
+        </select>
+        <br><br>
+        {% comment %}<input type="text" id="muscle_group" name="muscle_group" required><br><br>{% endcomment %}
 
-        <input type="submit" value="submit"><br><br>
+        <input type="submit" value="Submit"><br><br>
     </form>
     <hr>
     <h2>Community Created Exercises</h2>

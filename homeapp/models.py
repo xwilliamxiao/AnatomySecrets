@@ -24,9 +24,13 @@ class WorkoutPlan(models.Model):
     def __str__(self):
         return self.name
 
+
 class UserCreatedEx(models.Model):
     exercise_name = models.CharField(max_length=255)
-    muscle_group = models.CharField(max_length=255)
+    muscle_group = models.CharField(max_length=255,
+                                    choices=[('Biceps', 'Biceps'), ('Triceps', 'Triceps'), ('Shoulders', 'Shoulders'),
+                                             ('Chest', 'Chest'), ('Back', 'Back'), ('Quadriceps', 'Quadriceps'),
+                                             ('Hamstring', 'Hamstring'), ('Calf', 'Calf'), ('Abs', 'Abs')])
     exercise_description = models.CharField(max_length=255)
 
     # This just renames what is listed in the database
